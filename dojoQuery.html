@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DojoQuery</title>
+	
+</head>
+<body>
+	<button id="clicky">The clicky button</button>
+	<button id="hovery">The hovery button</button>
+
+
+
+	<script>
+
+	// function Dojo(){};
+	function $Dojo(){};
+	// function Dojo(){};
+	// var $dojo;
+
+	(function() { 
+	 function Dojo(htmlItem){ 
+	 	this.grabbedElement = document.getElementById(htmlItem);
+
+	 }
+
+	 Dojo.prototype.click = function(predicate){
+	 	this.grabbedElement.addEventListener('click', function(){
+	 		predicate();
+	 	})
+	 }
+
+ 	Dojo.prototype.hover = function(predicate, predicate2){
+ 		this.grabbedElement.addEventListener('mouseover', function(){
+ 			predicate();
+ 		})
+ 		this.grabbedElement.addEventListener('mouseout', function(){
+ 			predicate2();
+ 		})
+ 	}
+
+	 
+
+	 function $Dojo(htmlItem) {
+	 	$dojo = new Dojo(htmlItem);
+	 	return $dojo;
+	 	}
+
+	 window.$Dojo = $Dojo;
+	 
+	})();
+
+	$Dojo("clicky").click(function(){
+		console.log("Clicky clicky");
+	});
+
+	$Dojo("hovery").hover(function(){
+		console.log("Hoverboards are the wave of the future!");
+	}, function(){
+		console.log("Or maybe they're the best way ever to crack your skull");
+	});
+	
+
+
+	</script>
+
+
+
+</body>
+</html>
